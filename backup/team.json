@@ -175,7 +175,7 @@
             "tags",
             "send-trackbacks"
         ],
-        "active": 0,
-        "description": ""
+        "active": 1,
+        "description": "Team Settings"
     }
 ]
