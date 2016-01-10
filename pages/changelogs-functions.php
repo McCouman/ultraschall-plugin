@@ -7,6 +7,14 @@
  */
 function get_changelogs( $language ) {
 
+    echo '<div class="uk-container uk-container-center uk-margin-large-top uk-margin-large-bottom ultraschall-clogs">';
+    echo '<div class="uk-grid" data-uk-grid-margin="">';
+    echo '<div class="uk-width-medium-1">';
+    echo '<h1>Changelog</h1>';
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
+
     $clogs_args = array(
             'post_type'      => 'ultraschall_clogs',
             'post_status'    => 'publish',
@@ -18,8 +26,17 @@ function get_changelogs( $language ) {
     while ( $clogs_query->have_posts() ) : $clogs_query->the_post();
         view_changelogs( $language );
     endwhile;
-
     wp_reset_query();
+
+
+    echo '<div class="uk-container uk-container-center uk-margin-large-top uk-margin-bottom ultraschall-clogs">';
+    echo '<div class="uk-grid" data-uk-grid-margin="">';
+    echo '<div class="uk-width-medium-1">';
+    echo '<hr />';
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
+
 }
 
 function view_changelogs( $language ) {
@@ -49,25 +66,24 @@ function view_changelogs( $language ) {
  */
 function set_changelog( $language ) {
     echo '<div class="us-changelog">';
-    if ( $language == 'de' )
-    {
-        $rows = get_field( "changelogs" );
-        if ( $rows )
-        {
-            echo '<dl class="uk-description-list-horizontal">';
-            foreach ( $rows as $row )
-            {
-                echo '<dt class="clog-type">';
-                infos_changlog_types( $row, $language );
-                echo ':</dt>';
 
-                echo '<dd><span class="clog-heading">' . $row[ 'headering' ] . ':</span>';
-                echo '<br>' . $row[ 'log_content' ] . '<br><br>';
-                echo '</dd>';
-            }
-            echo '</dl>';
+    $rows = get_field( "changelogs" );
+    if ( $rows )
+    {
+        echo '<dl class="uk-description-list-horizontal">';
+        foreach ( $rows as $row )
+        {
+            echo '<dt class="clog-type">';
+            infos_changlog_types( $row, $language );
+            echo ':</dt>';
+
+            echo '<dd><span class="clog-heading">' . $row[ 'headering' ] . ':</span>';
+            echo '<br>' . $row[ 'log_content' ] . '<br><br>';
+            echo '</dd>';
         }
+        echo '</dl>';
     }
+
     echo '</div>';
 }
 
